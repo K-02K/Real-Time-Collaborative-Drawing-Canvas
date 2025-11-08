@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaborative Drawing Canvas</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">Collaborative Drawing Canvas</h1>
+            <div class="header-right">
+                <div class="username-section">
+                    <span class="username-label">Your Name:</span>
+                    <input type="text" id="username-input" class="username-input" placeholder="Enter your name" maxlength="20">
+                    <button id="change-name-btn" class="change-name-btn" title="Change Name">✏️</button>
+                </div>
+                <div class="users-panel">
+                    <h2 class="users-title">Online Users</h2>
+                    <div id="users-list" class="users-list"></div>
+                </div>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="canvas-container">
+                <canvas id="drawing-canvas"></canvas>
+                <div id="cursors-overlay" class="cursors-overlay"></div>
+            </div>
+        </main>
+
+        <footer class="toolbar">
+            <div class="tool-section">
+                <h3 class="tool-section-title">Tools</h3>
+                <div class="tool-buttons">
+                    <button id="brush-tool" class="tool-btn active" title="Brush">
+                        <span class="tool-icon">✏️</span>
+                        <span class="tool-label">Brush</span>
+                    </button>
+                    <button id="eraser-tool" class="tool-btn" title="Eraser">
+                        <span class="tool-icon">🧹</span>
+                        <span class="tool-label">Eraser</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <h3 class="tool-section-title">Colors</h3>
+                <div class="color-picker-container">
+                    <input type="color" id="color-picker" value="#000000" class="color-input">
+                    <div class="color-presets">
+                        <button class="color-preset" data-color="#000000" style="background-color: #000000;"></button>
+                        <button class="color-preset" data-color="#FF0000" style="background-color: #FF0000;"></button>
+                        <button class="color-preset" data-color="#00FF00" style="background-color: #00FF00;"></button>
+                        <button class="color-preset" data-color="#0000FF" style="background-color: #0000FF;"></button>
+                        <button class="color-preset" data-color="#FFFF00" style="background-color: #FFFF00;"></button>
+                        <button class="color-preset" data-color="#FF00FF" style="background-color: #FF00FF;"></button>
+                        <button class="color-preset" data-color="#00FFFF" style="background-color: #00FFFF;"></button>
+                        <button class="color-preset" data-color="#FFFFFF" style="background-color: #FFFFFF;"></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <h3 class="tool-section-title">Stroke Width</h3>
+                <div class="stroke-width-control">
+                    <input type="range" id="stroke-width" min="1" max="50" value="5" class="stroke-slider">
+                    <span id="stroke-width-value" class="stroke-width-value">5px</span>
+                </div>
+            </div>
+
+            <div class="tool-section">
+                <h3 class="tool-section-title">Actions</h3>
+                <div class="action-buttons">
+                    <button id="undo-btn" class="action-btn" title="Undo">
+                        <span class="action-icon">↶</span>
+                        <span class="action-label">Undo</span>
+                    </button>
+                    <button id="redo-btn" class="action-btn" title="Redo">
+                        <span class="action-icon">↷</span>
+                        <span class="action-label">Redo</span>
+                    </button>
+                    <button id="clear-btn" class="action-btn clear" title="Clear Canvas">
+                        <span class="action-icon">🗑️</span>
+                        <span class="action-label">Clear</span>
+                    </button>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="canvas.js"></script>
+    <script src="websocket.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
+
